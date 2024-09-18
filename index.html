@@ -266,6 +266,7 @@
                         <td class="visible-with-data" id="long">' + (feature.properties['long'] !== null ? autolinker.link(feature.properties['long'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
+<<<<<<< HEAD
                         <th scope="row">name</th>\
                         <td class="visible-with-data" id="name">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -292,9 +293,13 @@
                     <tr>\
                         <th scope="row">phone</th>\
                         <td class="visible-with-data" id="phone">' + (feature.properties['phone'] !== null ? autolinker.link(feature.properties['phone'].toLocaleString()) : '') + '</td>\
+=======
+                        <th scope="row">Description</th>\
+                        <td class="visible-with-data" id="Descriptio">' + (feature.properties['Descriptio'] !== null ? autolinker.link(feature.properties['Descriptio'].toLocaleString()) : '') + '</td>\
+>>>>>>> 08a65f75796b51724607434fd5f6ff7d84bf2286
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['image'] !== null ? '<img src="images/' + String(feature.properties['image']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['image'] !== null ? '<img src="images/' + String(feature.properties['image']).replace(/[\\\/:]/g, '_').trim() + '" style="width:200px; height:200px;">' : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
