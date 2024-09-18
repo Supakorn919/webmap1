@@ -294,7 +294,6 @@
                         <td class="visible-with-data" id="phone">' + (feature.properties['phone'] !== null ? autolinker.link(feature.properties['phone'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['image'] !== null ? '<img src="images/' + String(feature.properties['image']).replace(/[\\\/:]/g, '_').trim() + '" style="width:200px; height:200px;">' : '') + '</td>\
                         <td colspan="2">' + (feature.properties['image'] !== null ? '<img src="images/' + String(feature.properties['image']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
                     </tr>\
                 </table>';
