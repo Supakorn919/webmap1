@@ -11,7 +11,8 @@
         <link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -40,10 +41,10 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="js/leaflet-search.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
         <script src="data/boundaryhadkam_2.js"></script>
         <script src="data/area_3.js"></script>
-        <script src="data/Map_point_4.js"></script>
+        <script src="data/mappoint_4.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -187,7 +188,7 @@
             return {
                 pane: 'pane_boundaryhadkam_2',
                 opacity: 1,
-                color: 'rgba(228,26,28,1.0)',
+                color: 'rgba(53,121,177,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -227,7 +228,7 @@
             return {
                 pane: 'pane_area_3',
                 opacity: 1,
-                color: 'rgba(53,121,177,1.0)',
+                color: 'rgba(228,117,119,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -250,23 +251,47 @@
         });
         bounds_group.addLayer(layer_area_3);
         map.addLayer(layer_area_3);
-        function pop_Map_point_4(feature, layer) {
+        function pop_mappoint_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">LAT</th>\
-                        <td class="visible-with-data" id="LAT">' + (feature.properties['LAT'] !== null ? autolinker.link(feature.properties['LAT'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">id</th>\
+                        <td class="visible-with-data" id="id">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">LNG</th>\
-                        <td class="visible-with-data" id="LNG">' + (feature.properties['LNG'] !== null ? autolinker.link(feature.properties['LNG'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">lat</th>\
+                        <td class="visible-with-data" id="lat">' + (feature.properties['lat'] !== null ? autolinker.link(feature.properties['lat'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">NAME</th>\
-                        <td class="visible-with-data" id="NAME">' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">long</th>\
+                        <td class="visible-with-data" id="long">' + (feature.properties['long'] !== null ? autolinker.link(feature.properties['long'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Descriptio</th>\
-                        <td class="visible-with-data" id="Descriptio">' + (feature.properties['Descriptio'] !== null ? autolinker.link(feature.properties['Descriptio'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">name</th>\
+                        <td class="visible-with-data" id="name">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">owner</th>\
+                        <td class="visible-with-data" id="owner">' + (feature.properties['owner'] !== null ? autolinker.link(feature.properties['owner'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">typebusiness</th>\
+                        <td class="visible-with-data" id="typebusiness">' + (feature.properties['typebusiness'] !== null ? autolinker.link(feature.properties['typebusiness'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">address</th>\
+                        <td class="visible-with-data" id="address">' + (feature.properties['address'] !== null ? autolinker.link(feature.properties['address'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">validuntil</th>\
+                        <td class="visible-with-data" id="validuntil">' + (feature.properties['validuntil'] !== null ? autolinker.link(feature.properties['validuntil'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">issueddate</th>\
+                        <td class="visible-with-data" id="issueddate">' + (feature.properties['issueddate'] !== null ? autolinker.link(feature.properties['issueddate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">phone</th>\
+                        <td class="visible-with-data" id="phone">' + (feature.properties['phone'] !== null ? autolinker.link(feature.properties['phone'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['image'] !== null ? '<img src="images/' + String(feature.properties['image']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
@@ -279,9 +304,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Map_point_4_0() {
+        function style_mappoint_4_0() {
             return {
-                pane: 'pane_Map_point_4',
+                pane: 'pane_mappoint_4',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -291,30 +316,34 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,221,148,1.0)',
+                fillColor: 'rgba(252,34,0,1.0)',
                 interactive: true,
             }
         }
-        map.createPane('pane_Map_point_4');
-        map.getPane('pane_Map_point_4').style.zIndex = 404;
-        map.getPane('pane_Map_point_4').style['mix-blend-mode'] = 'normal';
-        var layer_Map_point_4 = new L.geoJson(json_Map_point_4, {
+        map.createPane('pane_mappoint_4');
+        map.getPane('pane_mappoint_4').style.zIndex = 404;
+        map.getPane('pane_mappoint_4').style['mix-blend-mode'] = 'normal';
+        var layer_mappoint_4 = new L.geoJson(json_mappoint_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Map_point_4',
-            layerName: 'layer_Map_point_4',
-            pane: 'pane_Map_point_4',
-            onEachFeature: pop_Map_point_4,
+            dataVar: 'json_mappoint_4',
+            layerName: 'layer_mappoint_4',
+            pane: 'pane_mappoint_4',
+            onEachFeature: pop_mappoint_4,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Map_point_4_0(feature));
+                return L.circleMarker(latlng, style_mappoint_4_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Map_point_4);
-        map.addLayer(layer_Map_point_4);
+        var cluster_mappoint_4 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_mappoint_4.addLayer(layer_mappoint_4);
+
+        bounds_group.addLayer(layer_mappoint_4);
+        cluster_mappoint_4.addTo(map);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -327,7 +356,7 @@
         .title += 'Search for a place';
         var baseMaps = {};
         var overlaysTree = [
-            {label: '<img src="legend/Map_point_4.png" /> Map_point', layer: layer_Map_point_4},
+            {label: '<img src="legend/mappoint_4.png" /> mappoint', layer: cluster_mappoint_4},
             {label: '<img src="legend/area_3.png" /> area', layer: layer_area_3},
             {label: '<img src="legend/boundaryhadkam_2.png" /> boundary hadkam', layer: layer_boundaryhadkam_2},
             {label: "Google Satellite", layer: layer_GoogleSatellite_1},
@@ -344,34 +373,27 @@
         lay.addTo(map);
         setBounds();
         var i = 0;
-        layer_Map_point_4.eachLayer(function(layer) {
+        layer_mappoint_4.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['NAME'] !== null?String('<div style="color: #ffffff; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['NAME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Map_point_4'});
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #ffffff; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_mappoint_4'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
               addLabel(layer, i);
               i++;
         });
-        map.addControl(new L.Control.Search({
-            layer: layer_Map_point_4,
-            initial: false,
-            hideMarkerOnCollapse: true,
-            propertyName: 'NAME'}));
-        document.getElementsByClassName('search-button')[0].className +=
-         ' fa fa-binoculars';
-        resetLabels([layer_Map_point_4]);
+        resetLabels([layer_mappoint_4]);
         map.on("zoomend", function(){
-            resetLabels([layer_Map_point_4]);
+            resetLabels([layer_mappoint_4]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Map_point_4]);
+            resetLabels([layer_mappoint_4]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Map_point_4]);
+            resetLabels([layer_mappoint_4]);
         });
         </script>
     </body>
